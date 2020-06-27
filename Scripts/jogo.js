@@ -4,6 +4,9 @@ const HEIGHT = 600;
 const FRAME_RATE = 60;
 let objetos = new ListaObjetos();
 let sprites = new ListaSprites();
+let casa = new Sprite("Sprites/castleSmallAlt.png", Sprite.camadas.frente);
+casa.largura = 108;
+casa.altura = 85;
 
 let paralaxe = new Paralaxe();
 
@@ -21,6 +24,7 @@ function setup() {
 
   objetos.configura();
   sprites.configura();
+
 }
 
 function draw() {

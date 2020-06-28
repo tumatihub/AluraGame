@@ -21,6 +21,8 @@ class Jogador extends Sprite{
         this.gravidade = 1500;
         this.taxaAumentoPulo = 400;
         this.posicaoInicial = null;
+
+        this.colisor = new ColisorRetangulo();
     }
 
     configura(){
@@ -40,6 +42,11 @@ class Jogador extends Sprite{
     }
 
     atualiza(){
+        this.colisor.x = this.posicao.x + 20;
+        this.colisor.y = this.posicao.y + 110;
+        this.colisor.largura = this.largura -60;
+        this.colisor.altura = this.altura -170;
+
         this.animador.anima();
 
         this.move();
@@ -51,6 +58,8 @@ class Jogador extends Sprite{
                 this.pula();
             }
         }
+
+        this.testaColisao();
     }
 
     pula(){
@@ -74,5 +83,33 @@ class Jogador extends Sprite{
                 this.velocidadePulo = this.velocidadePuloMin;
             }
         }
+    }
+    testaColisao(){
+        sprites.lista.forEach( (sprite) => {
+            if (sprite != this && sprite.ativo && sprite.colisor != null){
+                let colidiu = collideRectRect(
+                    this.colisor.x,
+                    this.colisor.y,
+                    this.colisor.largura,
+                    this.colisor.altura,
+                    sprite.colisor.x,
+                    sprite.colisor.y,
+                    sprite.colisor.largura,
+                    sprite.colisor.altura,
+                );
+                if (colidiu){
+                    this.colisor.colidindo = true;
+                    sprite.colisor.colidindo = true;
+                    
+                } else {
+                    this.colisor.colidindo = false;
+                    sprite.colisor.colidindo = false;
+                }
+            }
+        });
+    }
+
+    debug(){
+        this.colisor.exibe();
     }
 }

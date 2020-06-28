@@ -16,11 +16,11 @@ class Geleia extends Sprite{
         this.animador = new Animador(this);
         this.velocidade = 200;
         this.ativo = false;
+        this.colisor = new ColisorRetangulo();
     }
 
     configura(){
         super.configura();
-
         this.posicao.y = paralaxe.chaoY - this.altura;
         let estado = this.animador.adicionaEstado("andando", .4);
         this.animador.adicionaAnimacao(estado, .15, 2);
@@ -29,6 +29,11 @@ class Geleia extends Sprite{
     }
 
     atualiza(){
+        this.colisor.x = this.posicao.x + 5;
+        this.colisor.y = this.posicao.y + 37;
+        this.colisor.largura = this.largura -10;
+        this.colisor.altura = this.altura -37;
+
         this.animador.anima();
         this.move();
     }
@@ -46,5 +51,9 @@ class Geleia extends Sprite{
     ativa(){
         super.ativa();
         this.posicao.x = geradorInimigos.posicao.x;
+    }
+
+    debug(){
+        this.colisor.exibe();
     }
 }

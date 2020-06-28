@@ -77,6 +77,10 @@ class Sprite extends Objeto{
     ativa(){
         this.ativo = true;
     }
+
+    debug(){
+        
+    }
 }
 
 Sprite.camadas = {

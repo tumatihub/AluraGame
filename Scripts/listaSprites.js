@@ -34,4 +34,14 @@ class ListaSprites extends ListaObjetos {
     ordenaPorCamadas(){
         this.lista.sort(this.comparaCamadas);
     }
+
+    debug(){
+        if (!debug) return;
+
+        this.lista.forEach( (sprite) => {
+            if (sprite.ativo === true){
+                sprite.debug();
+            }
+        })
+    }
 }

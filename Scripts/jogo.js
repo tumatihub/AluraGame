@@ -4,11 +4,16 @@ const HEIGHT = 600;
 const FRAME_RATE = 60;
 let objetos = new ListaObjetos();
 let sprites = new ListaSprites();
+let debug = true;
 
 let paralaxe = new Paralaxe();
 
 let jogador = new Jogador();
 let geradorInimigos = new GeradorInimigos();
+
+let geleia_teste = new Geleia();
+geleia_teste.ativo = true;
+
 
 function preload() {
   sprites.carrega();
@@ -24,12 +29,17 @@ function setup() {
 
   objetos.configura();
   sprites.configura();
+
+  geleia_teste.posicao.x = 0;
+  geleia_teste.posicao.y = 0;
+  geleia_teste.velocidade = 0;
 }
 
 function draw() {
   objetos.atualiza();
   sprites.atualiza();
   sprites.exibe();
+  sprites.debug();
 }
 
 function keyReleased() {

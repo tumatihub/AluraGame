@@ -23,6 +23,7 @@ class Jogador extends Sprite{
         this.posicaoInicial = null;
 
         this.colisor = new ColisorRetangulo();
+        this.morto = false;
     }
 
     configura(){
@@ -39,6 +40,8 @@ class Jogador extends Sprite{
         this.animador.adicionaAnimacao(estado, 0, 3);
         estado = this.animador.adicionaEstado("caindo", 1);
         this.animador.adicionaAnimacao(estado, 0, 11);
+        estado = this.animador.adicionaEstado("morrendo", 1);
+        this.animador.adicionaAnimacao(estado, 0, 3);
     }
 
     atualiza(){
@@ -63,7 +66,7 @@ class Jogador extends Sprite{
     }
 
     pula(){
-        if (this.estaPulando) return;
+        if (this.estaPulando || this.morto) return;
 
         this.estaPulando = true;
         this.animador.mudaEstado(this.animador.estados.pulando);
@@ -71,7 +74,7 @@ class Jogador extends Sprite{
 
     move(){
         if (this.estaPulando){
-            this.posicao.y += -this.velocidadePulo * deltaTime/1000
+            this.posicao.y += -this.velocidadePulo * deltaTime/1000;
             this.velocidadePulo -= this.gravidade * deltaTime/1000;
             if (this.velocidadePulo < 0){
                 this.animador.mudaEstado(this.animador.estados["caindo"]);
@@ -83,8 +86,26 @@ class Jogador extends Sprite{
                 this.velocidadePulo = this.velocidadePuloMin;
             }
         }
+
+        if (this.morto){
+            this.posicao.y += -this.velocidadePulo * deltaTime/1000;
+            this.posicao.x += -this.velocidadePuloMin/5 * deltaTime/1000;
+            this.escala = createVector(
+                    this.escala.x += 0.2 * deltaTime/1000,
+                    this.escala.y += 0.2 * deltaTime/1000
+                )
+            this.velocidadePulo -= this.gravidade * deltaTime/1000;
+            /* if (this.posicao.y >= this.posicaoInicial.y){
+                this.posicao.y = this.posicaoInicial.y;
+                this.estaPulando = false;
+                this.animador.mudaEstado(this.animador.estados["morrendo"]);
+                this.velocidadePulo = this.velocidadePuloMin;
+            } */
+        }
     }
     testaColisao(){
+        if (this.morto) return;
+
         sprites.lista.forEach( (sprite) => {
             if (sprite != this && sprite.ativo && sprite.colisor != null){
                 let colidiu = collideRectRect(
@@ -100,13 +121,21 @@ class Jogador extends Sprite{
                 if (colidiu){
                     this.colisor.colidindo = true;
                     sprite.colisor.colidindo = true;
-                    
+                    this.morre();
                 } else {
                     this.colisor.colidindo = false;
                     sprite.colisor.colidindo = false;
                 }
             }
         });
+    }
+
+    morre(){
+        this.morto = true;
+        this.estaPulando = false;
+        this.velocidadePulo = this.velocidadePuloMin;
+        this.animador.mudaEstado(this.animador.estados["morrendo"]);
+        geradorInimigos.ativo = false;
     }
 
     debug(){

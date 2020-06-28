@@ -12,6 +12,7 @@ class GeradorInimigos extends Objeto{
         this.intervalo = 10;
         this.contagem = 0;
         this.grupoAtual = null;
+        this.ativo = false;
     }
 
     configura() {
@@ -19,6 +20,8 @@ class GeradorInimigos extends Objeto{
     }
 
     atualiza(){
+        if (!this.ativo) return;
+
         this.contagem += deltaTime/1000;
         if (this.contagem >= this.intervalo){
             this.grupoAtual = this.escolheGrupo();

@@ -8,7 +8,7 @@ let sprites = new ListaSprites();
 let paralaxe = new Paralaxe();
 
 let jogador = new Jogador();
-let geleia = new Geleia();
+let geradorInimigos = new GeradorInimigos();
 
 function preload() {
   sprites.carrega();

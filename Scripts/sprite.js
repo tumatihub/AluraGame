@@ -26,6 +26,7 @@ class Sprite extends Objeto{
         this.framesPorColuna = framesPorColuna;
         this.matrizDeFrames = [];
         this._camada = camada;
+        this.ativo = true;
     }
     
     carrega(){
@@ -71,6 +72,10 @@ class Sprite extends Objeto{
     mudaCamada(camada){
         this._camada = camada;
         sprites.ordenaPorCamadas();
+    }
+
+    ativa(){
+        this.ativo = true;
     }
 }
 

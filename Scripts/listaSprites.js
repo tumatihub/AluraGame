@@ -6,7 +6,9 @@ class ListaSprites extends ListaObjetos {
 
     exibe(){
         this.lista.forEach( (sprite) => {
-            sprite.exibe();
+            if (sprite.ativo === true){
+                sprite.exibe();
+            }
         })
     }
 

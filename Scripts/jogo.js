@@ -30,3 +30,9 @@ function draw() {
   sprites.atualiza();
   sprites.exibe();
 }
+
+function keyReleased() {
+  if(keyCode === UP_ARROW){
+    jogador.pula();
+  }
+}

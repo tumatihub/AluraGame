@@ -43,5 +43,6 @@ class Animador {
     mudaEstado(estado){
         this.estado = estado;
         this.tempoAnimacao = 0;
+        this.indiceAnimacao = 0;
     }
 }

@@ -2,14 +2,17 @@
 const WIDTH = 800;
 const HEIGHT = 600;
 const FRAME_RATE = 60;
+let fonte;
 let objetos = new ListaObjetos();
 let sprites = new ListaSprites();
 let debug = true;
 
 let paralaxe = new Paralaxe();
 
+let pontos = new Pontos();
 let jogador = new Jogador();
 let geradorInimigos = new GeradorInimigos();
+
 
 let geleia_teste = new Geleia();
 geleia_teste.ativo = true;
@@ -17,6 +20,7 @@ geleia_teste.ativo = true;
 
 function preload() {
   sprites.carrega();
+  fonte = loadFont("Fonts/Kenney Future Narrow.ttf")
 }
 
 function setup() {
@@ -39,6 +43,7 @@ function draw() {
   objetos.atualiza();
   sprites.atualiza();
   sprites.exibe();
+  pontos.exibe();
   sprites.debug();
 }
 

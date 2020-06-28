@@ -24,6 +24,8 @@ class Jogador extends Sprite{
 
         this.colisor = new ColisorRetangulo();
         this.morto = false;
+
+        this.pontos = pontos;
     }
 
     configura(){

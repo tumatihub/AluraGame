@@ -12,7 +12,7 @@ class GeradorInimigos extends Objeto{
         this.intervalo = 10;
         this.contagem = 0;
         this.grupoAtual = null;
-        this.ativo = false;
+        this.ativo = true;
     }
 
     configura() {

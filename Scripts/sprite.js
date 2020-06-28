@@ -78,8 +78,12 @@ class Sprite extends Objeto{
         this.ativo = true;
     }
 
+    desativa(){
+        this.ativo = false;
+    }
+
     debug(){
-        
+
     }
 }
 

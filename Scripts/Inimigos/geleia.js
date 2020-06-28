@@ -39,18 +39,25 @@ class Geleia extends Sprite{
     }
 
     move(){
-        if (this.ativo){
-            this.posicao.x -= this.velocidade * deltaTime/1000;
-        }
+        if (!this.ativo) return;
+
+        this.posicao.x -= this.velocidade * deltaTime/1000;
+        
 
         if (this.posicao.x < -this.largura){
-            this.ativo = false;
+            this.desativa();
+            pontos.adicionaPontos(10);
         }
     }
 
     ativa(){
         super.ativa();
         this.posicao.x = geradorInimigos.posicao.x;
+    }
+
+    desativa(){
+        super.desativa();
+        
     }
 
     debug(){

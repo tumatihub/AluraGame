@@ -6,14 +6,18 @@ class Paralaxe extends Objeto {
 
         this.chao1 = new Sprite("Sprites/ground.png", Sprite.camadas.padrao);
         this.chao2 = new Sprite("Sprites/ground.png", Sprite.camadas.padrao);
-        this.chaoY = 500;
+        this.chaoY = 450;
     }
 
     configura(){
-        this.background1.altura = WIDTH;
-        this.background2.altura = WIDTH;
-        this.background1.largura = WIDTH;
-        this.background2.largura = WIDTH;
+        this.background1.altura = 1024;
+        this.background1.posicao.y = -200;
+        this.background2.posicao.y = -200;
+        this.background1.efeitoCamera = .5;
+        this.background2.altura = 1024;
+        this.background2.efeitoCamera = .5;
+        this.background1.largura = 1024;
+        this.background2.largura = 1024;
         this.background2.posicao.x = this.background2.largura;
         this.bg_velocidade = 100;
 

@@ -14,6 +14,6 @@ class ColisorRetangulo{
         } else {
             stroke("green");
         }
-        rect(this.x, this.y, this.largura, this.altura);
+        rect(this.x - camera.posicao.x, this.y - camera.posicao.y, this.largura, this.altura);
     }
 }

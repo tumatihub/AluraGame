@@ -11,6 +11,7 @@ let paralaxe = new Paralaxe();
 
 let pontos = new Pontos();
 let jogador = new Jogador();
+let camera = new Camera();
 let geradorInimigos = new GeradorInimigos();
 
 

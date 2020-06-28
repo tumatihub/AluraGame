@@ -27,6 +27,8 @@ class Sprite extends Objeto{
         this.matrizDeFrames = [];
         this._camada = camada;
         this.ativo = true;
+        this.camera = null;
+        this.efeitoCamera = 1;
     }
     
     carrega(){
@@ -34,6 +36,8 @@ class Sprite extends Objeto{
     }
     
     configura(){
+        this.camera = camera;
+
         let x = this.posicaoFrameX;
         let y = this.posicaoFrameY;
         for (let l = 1; l <= this.framesPorColuna; l++){
@@ -54,8 +58,8 @@ class Sprite extends Objeto{
         this.posicaoFrameY = this.matrizDeFrames[this.frameAtual-1].y;
         image(
             this.imagem,
-            this.posicao.x,
-            this.posicao.y,
+            this.posicao.x - camera.posicao.x * this.efeitoCamera,
+            this.posicao.y - camera.posicao.y * this.efeitoCamera,
             this.largura * this.escala.x,
             this.altura * this.escala.y,
             this.posicaoFrameX,

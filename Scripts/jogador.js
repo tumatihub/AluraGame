@@ -26,6 +26,7 @@ class Jogador extends Sprite{
     configura(){
         super.configura();
 
+        this.escala = createVector(.8, .8);
         this.posicaoInicial = createVector(100, 300);
         this.posicao = createVector(this.posicaoInicial.x, this.posicaoInicial.y);
         let estado = this.animador.adicionaEstado("caminha", .5);

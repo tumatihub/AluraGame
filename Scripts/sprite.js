@@ -78,6 +78,7 @@ Sprite.camadas = {
     "fundoDistante": 7,
     "fundo": 8,
     "padrao": 9,
-    "jogador": 10,
-    "frente": 11
+    "inimigo": 10,
+    "jogador": 11,
+    "frente": 12
 }

@@ -17,11 +17,11 @@ class Paralaxe extends Objeto {
     atualiza(){
         this.background1.posicao.x -= this.bg_velocidade * deltaTime;
         if (this.background1.posicao.x < -this.background1.largura){
-            this.background1.posicao.x = this.background1.largura;
+            this.background1.posicao.x = this.background2.posicao.x + this.background2.largura;
         }
         this.background2.posicao.x -= this.bg_velocidade * deltaTime;
         if (this.background2.posicao.x < -this.background2.largura){
-            this.background2.posicao.x = this.background2.largura;
+            this.background2.posicao.x = this.background1.posicao.x + this.background1.largura;
         }
     }
 }

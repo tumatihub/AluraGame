@@ -6,8 +6,7 @@ class Objeto{
     inicia(){
         //Funções do p5 que precisam ser executadas no setup
         this.posicao = createVector();
-        console.log("Fim inicia");
-        console.log(this.constructor.name + ' ' + this.posicao.x);
+        this.escala = createVector(1, 1);
     }
 
     configura(){

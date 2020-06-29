@@ -6,6 +6,7 @@ let fonte;
 let objetos = new ListaObjetos();
 let sprites = new ListaSprites();
 let debug = false;
+let iniciado = false;
 
 let musica;
 let puloSFX;
@@ -17,16 +18,16 @@ let camera = new Camera();
 let geradorInimigos = new GeradorInimigos();
 
 let barraPulo = new BarraPulo();
+let logo = new Logo();
+let gameOver = new GameOver();
 
-let geleia_teste = new Geleia();
-geleia_teste.ativo = true;
 
 
 function preload() {
   sprites.carrega();
   fonte = loadFont("Fonts/Kenney Future Narrow.ttf")
   musica = loadSound("Music/Run Amok.mp3");
-  puloSFX = loadSound("SFX/jump4.wav");
+  //puloSFX = loadSound("SFX/jump4.wav");
 }
 
 function setup() {
@@ -39,11 +40,6 @@ function setup() {
 
   objetos.configura();
   sprites.configura();
-  
-
-  geleia_teste.posicao.x = 0;
-  geleia_teste.posicao.y = 0;
-  geleia_teste.velocidade = 0;
 }
 
 function draw() {
@@ -51,6 +47,8 @@ function draw() {
   sprites.atualiza();
   sprites.exibe();
   pontos.exibe();
+  logo.exibe();
+  gameOver.exibe();
   sprites.debug();
 }
 
@@ -61,6 +59,10 @@ function keyReleased() {
 }
 
 function mousePressed() {
+  if (iniciado) return;
   userStartAudio();
-  musica.play();
+  musica.loop();
+  iniciado = true;
+  geradorInimigos.ativa();
+  logo.remove();
 }

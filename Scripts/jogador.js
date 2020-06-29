@@ -56,7 +56,7 @@ class Jogador extends Sprite{
 
         this.move();
 
-        if (keyIsDown(UP_ARROW) && !this.estaPulando){
+        if (keyIsDown(UP_ARROW) && !this.estaPulando && iniciado){
             this.velocidadePulo += this.taxaAumentoPulo * deltaTime/1000;
             
             if (this.velocidadePulo >= this.velocidadePuloMax){
@@ -68,10 +68,10 @@ class Jogador extends Sprite{
     }
 
     pula(){
-        if (this.estaPulando || this.morto) return;
+        if (this.estaPulando || this.morto || !iniciado) return;
 
         this.estaPulando = true;
-        puloSFX.play();
+        //puloSFX.play();
         this.animador.mudaEstado(this.animador.estados.pulando);
     }
 
@@ -107,7 +107,7 @@ class Jogador extends Sprite{
         }
     }
     testaColisao(){
-        if (this.morto) return;
+        if (this.morto || !iniciado) return;
 
         sprites.lista.forEach( (sprite) => {
             if (sprite != this && sprite.ativo && sprite.colisor != null){
@@ -139,6 +139,7 @@ class Jogador extends Sprite{
         this.velocidadePulo = this.velocidadePuloMin;
         this.animador.mudaEstado(this.animador.estados["morrendo"]);
         geradorInimigos.ativo = false;
+        gameOver.ativa();
     }
 
     debug(){

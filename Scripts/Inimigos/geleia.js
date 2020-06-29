@@ -47,6 +47,7 @@ class Geleia extends Sprite{
         if (this.posicao.x < -this.largura){
             this.desativa();
             pontos.adicionaPontos(10);
+            geradorInimigos.proximaOnda();
         }
     }
 

@@ -71,6 +71,7 @@ class Jogador extends Sprite{
         if (this.estaPulando || this.morto) return;
 
         this.estaPulando = true;
+        puloSFX.play();
         this.animador.mudaEstado(this.animador.estados.pulando);
     }
 
